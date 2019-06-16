@@ -1,0 +1,11 @@
+<h2>Home</h2>
+
+<form name="loginForm" ng-submit="login()" novalidate>
+    <!--Todo: add validators and errors description for min length, max length and pattern -->
+    Username: <input type="text" name="username" ng-model="username" required>
+    Password: <input type="text" name="password" ng-model="password" required>
+    <input ng-disabled="loginForm.username.$invalid || loginForm.password.$invalid"
+           type="submit" id="login" value="Login">
+</form>
+
+<p>{{test}}</p>
