@@ -1,6 +1,5 @@
 // poi controller
-angular.module("myApp")
-.controller("poiController", function ($scope) {
+angular.module("myApp").controller("poiController", function ($scope) {
     self = this;
     self.cities = {
         1: {name:"Paris", state: "France", image: "https://media-cdn.tripadvisor.com/media/photo-s/0d/f5/7c/f2/eiffel-tower-priority.jpg"},

@@ -1,0 +1,58 @@
+<h2>Register</h2>
+
+<div class="homeContent" id="register"> 
+    <form name="registerForm" ng-submit="register()" novalidate>
+        <!--Todo: add validators and errors description for min length, max length and pattern -->
+        <div class="form-group">
+            <label>Username:</label>
+            <div class="form-field">
+                <input type="text" name="reg_username" ng-model="reg_username" required>
+                <span ng-show="registerForm.reg_username.$error.required">This is required! </span>
+            </div>
+        </div>
+        <!-- MAKE ALLFIELDS LIKE THIS  -->
+        Password: <input type="text" name="reg_password" ng-model="reg_password" required>
+        First name: <input type="text" name="reg_firstName" ng-model="reg_firstName" required>
+        Last name: <input type="text" name="reg_lastName" ng-model="reg_lastName" required>
+        Email: <input type="text" name="reg_email" ng-model="reg_email" required>
+        City: <input type="text" name="reg_city" ng-model="reg_city" required>
+        Country: <select ng-model="countrySelect" ng-options="o as o for o in countryList"></select>
+        
+        <div class="form-group">
+            <label>Interests:</label>
+            <label>Please choose at least two categories. (press ctrl for multiple choice)</label>
+            <div class="form-field">
+                
+                <select ng-model="categories" multiple ng-options=" o.CategoryName for o in categoryList" required></select>
+            </div>
+        </div>
+        <label for="reg_quest1">Question1:</label>
+        <select ng-model="questionSelect1" ng-options=" o.QuestionValue for o in questionList" required></select>
+        <!-- <label for="reg_answer1">Answer1</label> -->
+        Answer1: <input type="text" name="reg_answer1" ng-model="reg_answer1" required>
+        <label for="reg_quest2">Question1:</label>
+        <select ng-model="questionSelect2" ng-options=" o.QuestionValue for o in questionList" required></select>
+        Answer2: <input type="text" name="reg_answer2" ng-model="reg_answer2" required>
+
+        <!-- submit button -->
+        <input ng-disabled="registerForm.username.$invalid || registerForm.password.$invalid"
+               type="submit" id="register" value="Register">
+    </form>
+
+</div>
+<!-- {
+	"username": "yardenez",
+	"password": "123456",
+	"firstName":"Yarden",
+	"lastName": "Ezra",
+	"city": "Ramat-Gan",
+	"country": "Israel",
+	"email": "yardenezr@gmail.com",
+	"categories": [{"name":"Shopping"},{"name": "Food"}],
+	"firstQuestionId": "1",
+	"firstAnswer": "Hana",
+	"secondQuestionId": "2",
+	"secondAnswer": "jaja"
+} -->
+
+

@@ -2,40 +2,37 @@
 <head>
     <title>My Website</title>
 </head>
-<body ng-app="myApp">
-<!-- load angular -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.js"></script>
-<script src="https://code.angularjs.org/1.7.8/angular-route.js"></script>
+<body ng-app="myApp" ng-controller="indexController">
 
-<!-- load app -->
-<script src="app.js"></script>
+    <!-- load angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.js"></script>
+    <script src="https://code.angularjs.org/1.7.8/angular-route.js"></script>
 
-<!-- load controllers -->
-<script src="pages/home/homeController.js"></script>
-<script src="pages/about/aboutController.js"></script>
-<script src="pages/poi/poiController.js"></script>
-<script src="pages/http/httpController.js"></script>
+    <!-- load app -->
+    <script src="app.js"></script>
 
-<!-- the website -->
-<h1>My Website</h1>
+    <!-- load controllers -->
+    <script src="pages/home/homeController.js"></script>
+    <script src="pages/about/aboutController.js"></script>
+    <script src="pages/poi/poiController.js"></script>
+    <script src="pages/http/httpController.js"></script>
+    <script src="pages/register/registerController.js"></script>
+    <script src="pages/login/loginController.js"></script>
 
-<!-- menu -->
-<ul>
-    <li>
-        <a href="#!home">Home</a>
-    </li>
-    <li>
-        <a href="#!about">About</a>
-    </li>
-    <li>
-        <a href="#!poi">POI</a>
-    </li>
-    <li>
-        <a href="#!httpRequest">POI</a>
-    </li>
-</ul>
+    <!-- the website -->
+    <h1>My Website</h1>
+    <!-- menu -->
+    <ul>
+        <!-- welcome our guest -->
+        <li id="loggedUser"> Hello <a>{{ getUserName() }}</a></li>
+        <li  ng-show= "!isUserLoggedIn()"> <a href="#!home">Home</a></li>
+        <li ng-show= "isUserLoggedIn()"> <a href="#!loggedUserHome" >Home</a></li>
+        <li> <a href="#!about">About</a></li>
+        <li> <a href="#!poi">POI</a></li>
+        <li> <a href="#!httpRequest">POI</a></li>
+    </ul>
 
-<!-- This section changes as the hashbang changes -->
-<div ng-view></div>
+    <!-- This section changes as the hashbang changes -->
+    <div ng-view></div>
 </body>
 </html>
