@@ -8,22 +8,9 @@ angular.module("myApp").controller("poiController", function ($scope, $http, $wi
         else
             return false;
     }
-    //retriveing categories
-    var onSucessCategories=function(response){
-        $scope.categories=response.data;
-    }
-    var onErrorCategories=function(response){
-        console.log(response);
-    }
-    $http.get("http://localhost:3000/categories/getAllCategories").then(onSucessCategories,onErrorCategories);
-    //getAllPOIs
-    var onSucessAllPOIs=function(response){
-        $scope.allPOIs=response.data;
-    }
-    var onErrorAllPOIs=function(response){
-        console.log(response);
-    }
-    $http.get("http://localhost:3000/poi/getALLPOIs").then(onSucessAllPOIs,onErrorAllPOIs);
+    //get favorite POI's
+    
+    
     //change sort parameter
     $scope.sort=function(){
         if($scope.sortByRank)

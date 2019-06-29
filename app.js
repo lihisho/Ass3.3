@@ -9,12 +9,12 @@ app.controller('indexController', function ($scope, $window) {
         return user_name;
     }
     /* check whether there is a logged user in the system */
-    $scope.isUserLoggedIn= function(){
-        if($window.sessionStorage.getItem("token")!=null )
-            return true;
-        else
-            return false;
-    }
+     $scope.isUserLoggedIn= function(){
+         if($window.sessionStorage.getItem("token")!=null )
+             return true;
+         else
+             return false;
+     }
 });
 
 // config routes
@@ -49,13 +49,26 @@ app.config(function($routeProvider)  {
             templateUrl: 'pages/login/login.html',
             controller : 'loginController as loginCtrl'
         })
+        .when('/favourites',{
+            templateUrl:'pages/favourites/favourites.html',
+            controller: 'favouritesController as favorCtrl'
+        })
         // other
         .otherwise({ redirectTo: '/home' });
 });
 
-// app.service('clientSharedProperites',function(){
+// app.service("SharedProperties", function($window){
 //     var serverUrl="http://localhost:3000";
-//     this.getServerURl()=function(){
+//     this.getServerURl=function(){
 //         return this.serverUrl;
+//     }
+//     this.isUserLogged=function(){
+//         if($window.sessionStorage.getItem("token")!=null){
+//             console.log("hi");
+//             return true;
+//         }
+//         else{
+//             return false;
+//         }
 //     }
 // });
