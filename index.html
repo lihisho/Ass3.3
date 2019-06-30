@@ -1,6 +1,9 @@
 <html>
 <head>
-    <title>My Website</title>
+    <title >Barcelona Secrets!</title>
+    <link rel="stylesheet" href="style.css" >
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 </head>
 <body ng-app="myApp" ng-controller="indexController">
 
@@ -11,6 +14,10 @@
     <!-- load app -->
     <script src="app.js"></script>
 
+    <!-- load bootstrap-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
     <!-- load controllers -->
     <script src="pages/home/homeController.js"></script>
     <script src="pages/about/aboutController.js"></script>
@@ -18,6 +25,8 @@
     <script src="pages/http/httpController.js"></script>
     <script src="pages/register/registerController.js"></script>
     <script src="pages/login/loginController.js"></script>
+    <script src="pages/favourites/favouritesController.js"></script>
+
 
     <!-- the website -->
     <h1>My Website</h1>
@@ -26,10 +35,11 @@
         <!-- welcome our guest -->
         <li id="loggedUser"> Hello <a>{{ getUserName() }}</a></li>
         <li  ng-show="!isUserLoggedIn()"> <a href="#!home">Home</a></li>
-        <li ng-show= "isUserLoggedIn()"> <a href="#!loggedUserHome" >Home</a></li>
+        <li  ng-show= "isUserLoggedIn()"> <a href="#!loggedUserHome" >Home</a></li>
         <li> <a href="#!about">About</a></li>
         <li> <a href="#!poi">POI</a></li>
         <li> <a href="#!httpRequest">POI</a></li>
+<!--        delete lastone??-->
     </ul>
 
     <!-- This section changes as the hashbang changes -->

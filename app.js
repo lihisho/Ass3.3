@@ -41,6 +41,11 @@ app.config(function($routeProvider)  {
             templateUrl: 'pages/register/register.html',
             controller : 'registerController as regCtrl'
         })
+        // retrieve password
+        .when('/retrievePassword', {
+            templateUrl: 'pages/home/retrievePassword.html',
+            controller : 'homeController as homeCntrl'
+        })
         .when('/httpRequest', {
             templateUrl: 'pages/http/request.html',
             controller : 'httpController as httpCtrl'
@@ -57,18 +62,16 @@ app.config(function($routeProvider)  {
         .otherwise({ redirectTo: '/home' });
 });
 
-// app.service("SharedProperties", function($window){
-//     var serverUrl="http://localhost:3000";
-//     this.getServerURl=function(){
-//         return this.serverUrl;
-//     }
-//     this.isUserLogged=function(){
-//         if($window.sessionStorage.getItem("token")!=null){
-//             console.log("hi");
-//             return true;
-//         }
-//         else{
-//             return false;
-//         }
-//     }
-// });
+app.service("poiDetails", function($http,$rootScope){
+   this.poiPopoverCtrl=function(poiId){
+        var onDetailsRetrvied = function (response) {
+            console.log(response.data.poiDetails[0].POInumOfViewers);
+            $rootScope.model_title=response.data.poiDetails[0].POInumOfViewers;
+        }
+        var onDetailsFailed = function (response) {
+            angular.element('.modal_title')
+            console.log(response);
+        }
+        $http.get("http://localhost:3000/poi/getPOIDet/"+poiId).then(onDetailsRetrvied, onDetailsFailed);
+    }
+});

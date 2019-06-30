@@ -1,54 +1,82 @@
 // register controller
-angular.module("myApp").controller("registerController", function ($scope, $http) {
-        // set possible questions for register.
-        $http({
-            method : "GET",
-            url : "http://localhost:3000/users/GetVerificationQuestions"
-        }).then(function mySuccess(response) {
-            $scope.questionList = response.data;
-        }, function myError(response) {
-            $scope.test="NOT-OK";
-        });
+angular.module("myApp").controller("registerController", function ($scope, $http, $location) {
+    // set possible questions for register.
+    $http({
+        method: "GET",
+        url: "http://localhost:3000/users/GetVerificationQuestions"
+    }).then(function mySuccess(response) {
+        $scope.questionList = response.data;
+    }, function myError(response) {
+        $scope.test = "NOT-OK";
+    });
 
-        $http({
-            method : "GET",
-            url : "http://localhost:3000/categories/getAllCategories"
-        }).then(function mySuccess(response) {
-            $scope.categoryList = response.data;
-        }, function myError(response) {
-            $scope.test="NOT-OK";
-        });
-        // TODO: remove all error functions.
+    $http({
+        method: "GET",
+        url: "http://localhost:3000/categories/getAllCategories"
+    }).then(function mySuccess(response) {
+        $scope.categoryList = response.data;
+    }, function myError(response) {
+        $scope.test = "NOT-OK";
+    });
 
-        // $scope.register = function() {
-        
-        //     $http({
-        //         method : "POST",
-        //         url : "http://localhost:3000/users/login",
-        //         data: {
-        //             "username":$scope.username,
-        //             "password":$scope.password
-        //         }
-        //     }).then(function mySuccess(response) {
-        //         $scope.test=response.data;
-        //     }, function myError(response) {
-        //         $scope.test="NOT-OK";
-        //     });
-        // }
-        
+    // TODO: remove all error functions.
 
-        // var systemCountries=[];
-        // fs.readFile('./Resources/countries.xml','utf8', function(err, data){
-            
-        //     parser.parseString(data, function(err,result){
-        //         var countries= result.Countries.Country;
-        //         var i;
-        //         for( i=0;i<countries.length;i++)
-        //             systemCountries.push(countries[i].Name[0]);
-        //     })
-        // });
-        // $scope.countryList= systemCountries;           
+    $http({
+        method: "GET",
+        url: "http://localhost:3000/users/getCountries"
+    }).then(function mySuccess(response) {
+        $scope.countryList = response.data;
+    }, function myError(response) {
+        $scope.test = "NOT-OK";
+    });
+
+    
+    getCat = function () {
+        var categories = [];
+        for (a in $scope.categories) {
+            categories.push({ "name": $scope.categories[a].CategoryName });
+        }
+        return categories;
+    }
+
+    // TODO: check pattern errors!
+    //TODO: miltiple have to choose 2;
+    $scope.register = function () {
+        var chosenCategories = [];
+        chosenCategories = getCat();
+        if (chosenCategories.length < 2){
+            console.log(chosenCategories.length)
+            alert("please choose 2 interests");
+        }
+        else {
+            $http({
+                method: "POST",
+                url: "http://localhost:3000/users/register",
+                data: {
+                    "username": $scope.reg_username,
+                    "password": $scope.reg_password,
+                    "firstName": $scope.reg_firstName,
+                    "lastName": $scope.reg_lastName,
+                    "city": $scope.reg_city,
+                    "country": $scope.countrySelect,
+                    "email": $scope.reg_email,
+                    "categories": chosenCategories,
+                    "firstQuestionId": $scope.questionSelect1.QuestionId,
+                    "firstAnswer": $scope.reg_answer1,
+                    "secondQuestionId": $scope.questionSelect2.QuestionId,
+                    "secondAnswer": $scope.reg_answer2
+                }
+            }).then(function mySuccess(response) {
+                alert("User created successfully");
+                $location.path('/home');
+            }, function myError(response) {
+                console.log(response)
+            });
+        }
+    }
+
+
 });
 
 
-    
+

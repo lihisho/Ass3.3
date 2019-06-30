@@ -23,7 +23,6 @@ angular.module("myApp")
         });
 
         $scope.logOut=function(){
-            console.log("here");
             $window.sessionStorage.removeItem("token");
             $window.sessionStorage.removeItem("userName");
             $location.path('/home');
