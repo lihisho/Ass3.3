@@ -1,6 +1,7 @@
 // poi controller
-angular.module("myApp").controller("favouritesController", function ($scope, $http, $window, poiDetails) {
-    $scope.userFavourites=JSON.parse(sessionStorage.getItem('userFavouritePOIs'));
+angular.module("myApp").controller("favouritesController", function ($scope, $http, $window, poiDetails, handleFavorites) {
+    $scope.userFavourites=JSON.parse($window.sessionStorage.getItem('userFavouritePOIs'));
+    console.log($scope.userFavourites);
     //handle poi details presentaion
     $scope.showDet=function(event){
         poiDetails.poiPopoverCtrl(event.target.id);
@@ -40,16 +41,11 @@ angular.module("myApp").controller("favouritesController", function ($scope, $ht
     }
     $http.get("http://localhost:3000/categories/getAllCategories").then(onSucessCategories,onErrorCategories);
     //remove Favourite POI from the user favourite poi list saved in the session storage
-    $scope.removeFavPOI=function(poiID)
-    {
-        for(var i = 0; i < $scope.userFavourites.length; i++) {
-            var fav_poi = $scope.userFavourites[i];
-            if(fav_poi.POIid== poiID){
-                $scope.userFavourites.splice(i,1);
-            }
-        }
-        $window.sessionStorage.setItem("userFavouritePOIs",JSON.stringify($scope.userFavourites));
+    
+    $scope.removeFavPOI=function(poiID){
+        handleFavorites.removeFavPOIs(poiID, $scope.userFavourites);
     }
+    
     //save all favourites stored in the user sessiong storage
     $scope.saveLocalFavouritesList=function(){
         var favToBeSaved={POIs:[]};

@@ -1,8 +1,11 @@
 // poi controller
 var jq = $.noConflict();
-angular.module("myApp").controller("poiController", function ($scope, $http, $window, poiDetails) {
+angular.module("myApp").controller("poiController", function ($scope, $http, $window, poiDetails,handleFavorites) {
+    $scope.userFavourite =$window.sessionStorage.getItem('userFavouritePOIs');
+    var favorites= $scope.userFavourite?JSON.parse($scope.userFavourite):[];
+    $scope.numOfFavorites = favorites.length;
     //handle poi details presentaion
-    $scope.showDet=function(event){
+    $scope.showDet = function (event) {
         poiDetails.poiPopoverCtrl(event.target.id);
     };
     //logged user check
@@ -12,6 +15,27 @@ angular.module("myApp").controller("poiController", function ($scope, $http, $wi
         else
             return false;
     }
+    $scope.addOrRemoveFavorite = function (poiID,poiName,poiImage,poiCategory,poiRank) {
+        $scope.userFavourite =JSON.parse($window.sessionStorage.getItem('userFavouritePOIs'));
+        for(var p=0; p<$scope.allPOIs.length; p++){
+            var poi = $scope.allPOIs[p];
+            if(poi.POIid === poiID){
+                if(poi.Favorite === true){
+                    $scope.allPOIs[p].Favorite=false;
+                    handleFavorites.removeFavPOIs(poiID, $scope.userFavourite);  
+                    $scope.numOfFavorites--;
+                    console.log(JSON.parse($window.sessionStorage.getItem('userFavouritePOIs')));                  
+                }
+                else{
+                    $scope.allPOIs[p].Favorite=true;
+                    handleFavorites.addFavPOIs(poiID,poiName,poiImage,poiCategory,poiRank,$scope.userFavourite);
+                    $scope.numOfFavorites++;
+                    console.log(JSON.parse($window.sessionStorage.getItem('userFavouritePOIs')));
+
+                }
+            }
+        }
+    }
     //retriveing categories
     var onSucessCategories = function (response) {
         $scope.categories = response.data;
@@ -20,9 +44,41 @@ angular.module("myApp").controller("poiController", function ($scope, $http, $wi
         console.log(response);
     }
     $http.get("http://localhost:3000/categories/getAllCategories").then(onSucessCategories, onErrorCategories);
+
+    addIsFavorite = function (POIs) {
+        // $scope.userFavourite = JSON.parse($window.sessionStorage.getItem('userFavouritePOIs'));
+        console.log($scope.userFavourite);
+    
+        for (var j = 0; j < POIs.length; j++) {
+            var isFav=false;
+            for (var i = 0; i < $scope.userFavourite.length; i++) {
+                var fav = $scope.userFavourite[i];
+                if (fav.POIid === POIs[j].POIid) {
+                    isFav=true;
+                    break;
+                }
+            }
+            POIs[j].Favorite= isFav;
+        }
+        // console.log(POIs);
+        return POIs;           
+    }
+
+
+    $scope.chooseImage =function(isFavorite){
+        if(isFavorite)
+            return "glyphicon glyphicon-heart"
+        else
+            return "glyphicon glyphicon-heart-empty"
+    }
+
     //getAllPOIs
     var onSucessAllPOIs = function (response) {
-        $scope.allPOIs = response.data;
+        if($scope.isUserLoggedIn())
+            $scope.allPOIs = addIsFavorite(response.data);
+        else
+            $scope.allPOIs = response.data;
+        
     }
     var onErrorAllPOIs = function (response) {
         console.log(response);
@@ -78,9 +134,9 @@ angular.module("myApp").controller("poiController", function ($scope, $http, $wi
     jq(document).ready(function () {
         jq(".modal").on('hidden.bs.modal', function () {
             jq('textarea#userContentInput').val('');
-            $scope.user_review=null;
-            jq('input[name="rate"]').prop('checked',false);
-            $scope.userRating=null;
+            $scope.user_review = null;
+            jq('input[name="rate"]').prop('checked', false);
+            $scope.userRating = null;
         });
     });
 });

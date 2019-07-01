@@ -25,7 +25,7 @@
          && {CategoryName : selectedCategory}" >
                 <td ><a href id={{poi.POIid}} ng-click="showDet($event)" data-toggle="modal"  data-target="#poiDetModal">{{poi.POIname}}</a></td>
                 <td class="favorImageContainer">
-                    <img id={{poi.POIid}} ng-click="showDet($event)" data-toggle="modal"  data-target="#poiDetModal" ng-src={{poi.POIimage}} >
+                    <img id={{poi.POIid}} ng-click="showDet($event)" data-toggle="modal" data-target="#poiDetModal" ng-src={{poi.POIimage}} >
                     <button class="removeFavButton" ng-click="removeFavPOI(poi.POIid)">
                         <i class="material-icons">delete_forever</i>
                     </button>

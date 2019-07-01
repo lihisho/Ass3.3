@@ -1,21 +1,23 @@
 .menu{
-  background-color: rgb(63, 70, 77);
-  padding: 15px;
-  border-right:  3px solid black;
-
+  background-color: #c9e0e8 ;
+  border-color:white;
+  border-style:solid;
+  align-items: center;
 }
 .menu li
 {
   display:inline;
+  align-content: center;
 }
-.menu a, .menu p
+.menu li a
 {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 15px;
   text-decoration: none;
-  color:#eaefef;
+  color:black;
   display: inline-block;
-  padding:  25px;
-  height: 10px;
-  border-radius: 5px;
+  padding: 1.5% 1.5%;
+  border-radius: 10px;
   /*border-bottom: 5px solid white;*/
 }
 .menu a:hover
@@ -24,35 +26,52 @@
   color:black;
 }
 #loggedUser{
-  color: #dabfa4;
+  color: black;
 }
 
-#logout{
-  position: relative;
-  float: right; 
+.c{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 15px;
+
 }
+/* .menu #logout{
+  float: right;
+
+} */
 
 .header-img-container{
   width: 100%;
 }
 
 #video{
-  height: 10%;
-  width: inherit;
+  width: 100%;
 
 }
 
-.favorImageContainer {
+.favorImageContainer ,.poiImage {
     position: relative;
     width: 30%;
   }
   
   /* Make the image responsive */
-  .favorImageContainer img {
+  .favorImageContainer img, .poiImage img  {
     width: 100%;
     height: auto;
   }
   
+  .poiImage .saveFavorite{
+    position: absolute;
+    top: 12%;
+    right: 0%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: rgba(240, 236, 231, 0.966);
+    color: rgb(207, 24, 63);
+    padding: 6px 6px;
+    border-color: black;
+    cursor: pointer;
+    border-radius: 5px;
+  }
   /* Style the button and place it in the middle of the container/image */
   .favorImageContainer .removeFavButton {
     position: absolute;
@@ -117,4 +136,41 @@
     width: auto;
     min-width: 300px;
 }
+
+.flex-container{
+  display: flex;
+  margin-left: 10%;
+}
+
+.flex-container > span {
+  border-radius: 10px;
+  border: 1px solid white	;
+  background-color: #f1f1f1;
+  margin: 20px;
+  padding: 5px;
+  padding-bottom: 10px;
+  font-size: 15px;
+  font-family: 'Courier New', Courier, monospace;
+  align-content: center;
+}
+
+.flex-container> span img{
+  border-radius: 10px;
+}
+
+.flex-container>span:hover{
+  opacity: 0.85;
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+  transform: scale(1.2);
+}
+
+/* home design */
+#randomePoints{
+  background-color:#c9e0e8	;
+  border-color:grey;
+  -webkit-filter: brightness(105%); /* Safari */
+  filter: brightness(105%);
+}
+
 

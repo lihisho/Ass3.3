@@ -24,8 +24,6 @@ app.controller('indexController', function ($scope, $window, $location) {
     }
 });
 
-
-
 // config routes
 app.config(function($routeProvider)  {
     $routeProvider
@@ -96,5 +94,33 @@ app.service("poiDetails", function($http,$rootScope){
         $rootScope.model_first_review=null;
         $rootScope.model_second_review=null;
         $http.get("http://localhost:3000/poi/getPOIDet/"+poiId).then(onDetailsRetrvied, onDetailsFailed);
+    }
+});
+
+app.service("handleFavorites", function($window){
+    this.removeFavPOIs=function(poiID,userFavorites)
+    {
+        for(var i = 0; i < userFavorites.length; i++) {
+            var fav_poi = userFavorites[i];
+            if(fav_poi.POIid== poiID){
+                userFavorites.splice(i,1);
+            }
+        }
+        $window.sessionStorage.setItem("userFavouritePOIs",JSON.stringify(userFavorites));
+    }
+
+    this.addFavPOIs=function(poiID,poiName,poiImage,poiCategory,poiRank,userFavorites)
+    {
+        console.log(userFavorites);
+        var curDate= new Date();
+        userFavorites.push({
+            "POIid" :poiID,
+            "POIname": poiName,            
+            "InsertionDate": curDate,
+            "CategoryName": poiCategory,
+            "POIimage": poiImage,
+            "POIaverageRank": poiRank
+         });
+        $window.sessionStorage.setItem("userFavouritePOIs",JSON.stringify(userFavorites));
     }
 });

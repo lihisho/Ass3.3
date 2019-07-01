@@ -15,7 +15,7 @@
     <li><button name="sort" ng-click="handleSortClicked()">{{toggleSortButtonText}} </button>
     </li>
     <!-- add favourite icon with number items! -->
-    <li ng-show="isUserLoggedIn()"><a href=#!favourites>Favorites</a></li>
+    <li ng-show="isUserLoggedIn()" ><a href=#!favourites ng-model="numOfFavorites" >Favorites ({{numOfFavorites}})</a></li>
   </ul>
 </div>
 <div name="POIS dispaly">
@@ -29,7 +29,14 @@
     <tr
       ng-repeat="poi in allPOIs | orderBy:sort() | filter:search| filter:(!!selectedCategory || undefined)  && {CategoryName : selectedCategory}">
       <td><a href id={{poi.POIid}} ng-click="showDet($event)" data-toggle="modal"  data-target="#poiDetModal">{{poi.POIname}}</a></td>
-      <td><img id={{poi.POIid}} ng-click="showDet($event)" data-toggle="modal"  data-target="#poiDetModal" ng-src={{poi.POIimage}} width="250px" height="150px"></td>
+      <td class="poiImage">
+        <img id={{poi.POIid}} ng-click="showDet($event)" data-toggle="modal"  data-target="#poiDetModal" ng-src={{poi.POIimage}} width="250px" height="150px">
+        <button class="saveFavorite" ng-show="isUserLoggedIn()" ng-click="addOrRemoveFavorite(poi.POIid, poi.POIname, poi.POIimage, poi.CategoryName, poi.POIaverageRank)">
+            <i class={{chooseImage(poi.Favorite)}}></i> 
+        </button>
+        <!-- <img ng-src={{atraction.isFavor}} ng-click="addOrRemoveToFavorite(atraction.id,atraction.isFavor,atraction)" style="height: 32px; width: 32px;"> -->
+
+      </td>
       <td>{{ poi.CategoryName }}</td>
       <td ng-show="isUserLoggedIn()"><button type="button" id={{poi.POIid}} data-toggle="modal"
           data-target="#reviewModal" ng-click="passPOIid($event)" >review this</button></td>
