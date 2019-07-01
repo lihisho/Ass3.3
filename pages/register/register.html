@@ -58,7 +58,7 @@
         <div class="form-group">
             <label> Country: </label>
             <div id="fields">
-                <select ng-model="countrySelect" ng-options="o for o in countryList" required>
+                <select ng-model="countrySelect" name="countrySelect" ng-options="o for o in countryList" required>
                     <option value="">--choose country--</option>
                 </select>
                 <span ng-show="registerForm.countrySelect.$error.required">This field is required! </span>
@@ -69,7 +69,7 @@
             <br />
             <label>Please choose at least two categories (Hold down ctrl button to select multiple options)</label>
             <div id="fields">
-                <select ng-model="categories" multiple ng-options=" o.CategoryName for o in categoryList"
+                <select ng-model="categories"name="categories" multiple ng-options=" o.CategoryName for o in categoryList"
                     required></select>
                 <span ng-show="registerForm.categories.$error.required">This field is required! </span>
 
@@ -78,7 +78,7 @@
         <div class="form-group">
             <label> Question1:</label>
             <div id="fields">
-                <select ng-model="questionSelect1" ng-options=" o.QuestionValue for o in questionList" required>
+                <select ng-model="questionSelect1" name="questionSelect1" ng-options=" o.QuestionValue for o in questionList" required>
                     <option value="">--choose first question--</option>
                 </select>
                 <span ng-show="registerForm.questionSelect1.$error.required">This field is required! </span>
@@ -92,7 +92,7 @@
         <div class="form-group">
             <label> Question2: </label>
             <div id="fields">
-                <select ng-model="questionSelect2" ng-options=" o.QuestionValue for o in questionList" required>
+                <select ng-model="questionSelect2" name="questionSelect2" ng-options=" o.QuestionValue for o in questionList" required>
                     <option value="">--choose first question--</option>
                 </select>
                 <span ng-show="registerForm.questionSelect2.$error.required">This field is required! </span>
