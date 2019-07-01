@@ -1,7 +1,7 @@
 // home controller
 angular.module("myApp")
     .controller("homeController", function ($scope, $http, $window, $location, poiDetails) {
-        var saveUserFavToStorage=function(response){
+        var saveUserFavToStorage = function (response) {
             $http
             ({
                 method: "GET",
@@ -14,35 +14,36 @@ angular.module("myApp")
             });
           };
         //handle login
-        $scope.login = function() {
+        $scope.login = function () {
             $http({
                 method: "POST",
-                url:"http://localhost:3000/users/login",
+                url: "http://localhost:3000/users/login",
                 // headers: {},
                 data: {
                     "username": $scope.username,
                     "password": $scope.password
                 }
             }).then(function mySuccess(response) {
-                    $window.sessionStorage.setItem("token",response.data);
-                    $window.sessionStorage.setItem("userName",$scope.username);
-                    saveUserFavToStorage(response);
-                    $location.path('/loggedUserHome');
+
+                $window.sessionStorage.setItem("token", response.data);
+                $window.sessionStorage.setItem("userName", $scope.username);
+                saveUserFavToStorage(response);
+                $location.path('/loggedUserHome');
             }, function myError(response) {
-                //Todo: deal with error!
-            });
+                alert("Username or password incorrect, please try again! :)");
+                });
 
         }
-        var onSucessRandPOI=function(response){
-            $scope.randomePOIs=response.data;
+        var onSucessRandPOI = function (response) {
+            $scope.randomePOIs = response.data;
         }
-        var onErrorRandPOI=function(response){
+        var onErrorRandPOI = function (response) {
             console.log(response);
         }
         // TODO: determine real minimal rank
-        $http.get("http://localhost:3000/poi/getRandomPOI/3").then(onSucessRandPOI,onErrorRandPOI);
+        $http.get("http://localhost:3000/poi/getRandomPOI/3").then(onSucessRandPOI, onErrorRandPOI);
         //handle showing poi detailes
-        $scope.showDet=function(event){
+        $scope.showDet = function (event) {
             poiDetails.poiPopoverCtrl(event.target.id);
         };
 
@@ -54,15 +55,15 @@ angular.module("myApp")
                 $scope.wrongUsername = false;
                 return true;
             }
-            else{
-                $scope.userVerified =false;
-                $scope.wrongUsername =true;
+            else {
+                $scope.userVerified = false;
+                $scope.wrongUsername = true;
                 return false;
 
             }
         }
 
-        $scope.isUserVerified =function(){
+        $scope.isUserVerified = function () {
             return $scope.userVerified;
         }
         $scope.getVerificationQuestions = function () {
@@ -70,39 +71,38 @@ angular.module("myApp")
                 method: "GET",
                 url: "http://localhost:3000/users/getUsersVerificationQuestions/" + $scope.userToRestore
             }).then(function mySuccess(response) {
-                console.log("good");
-                console.log(response.data);
                 setUserQuestions(response.data);
 
             }, function myError(response) {
-                //Todo: deal with error!
+                console.log(response.data)
+                
             });
         }
 
-        $scope.cancelRequest= function(){
+        $scope.cancelRequest = function () {
             $location.path('/home');
         }
 
         $scope.retrievePassword = function () {
-                $http({
-                    method: "POST",
-                    url: "http://localhost:3000/users/restorePassword",
-                    data: {
-                        "username": $scope.userToRestore,
-                        "firstQuestId": $scope.firstUserQuestion.QuestionId,
-                        "firstAnswer": $scope.answer1,
-                        "secondQuestId": $scope.secondUserQuestion.QuestionId,
-                        "secondAnswer": $scope.answer2
-                    }
-                }).then(function mySuccess(response) {
-                    if(response.data[0].UserPassword)
-                        $scope.message= response.data[0].UserPassword;
-                    else
+            $http({
+                method: "POST",
+                url: "http://localhost:3000/users/restorePassword",
+                data: {
+                    "username": $scope.userToRestore,
+                    "firstQuestId": $scope.firstUserQuestion.QuestionId,
+                    "firstAnswer": $scope.answer1,
+                    "secondQuestId": $scope.secondUserQuestion.QuestionId,
+                    "secondAnswer": $scope.answer2
+                }
+            }).then(function mySuccess(response) {
+                if (response.data[0].UserPassword)
+                    $scope.message = "Your Password is: " + response.data[0].UserPassword;
+                else
                     $scope.message = "Error- Invalid verification answers"
-                    
-                }, function myError(response) {
-                    console.log(response)
-                });
-            
+
+            }, function myError(response) {
+                console.log(response)
+            });
+
         }
     });

@@ -1,3 +1,46 @@
+.menu{
+  background-color: rgb(63, 70, 77);
+  padding: 15px;
+  border-right:  3px solid black;
+
+}
+.menu li
+{
+  display:inline;
+}
+.menu a, .menu p
+{
+  text-decoration: none;
+  color:#eaefef;
+  display: inline-block;
+  padding:  25px;
+  height: 10px;
+  border-radius: 5px;
+  /*border-bottom: 5px solid white;*/
+}
+.menu a:hover
+{
+  background: rgba(255, 255, 255, 0.747);
+  color:black;
+}
+#loggedUser{
+  color: #dabfa4;
+}
+
+#logout{
+  position: relative;
+  float: right; 
+}
+
+.header-img-container{
+  width: 100%;
+}
+
+#video{
+  height: 10%;
+  width: inherit;
+
+}
 
 .favorImageContainer {
     position: relative;
@@ -67,6 +110,11 @@
   }
 
   .modal-body{
-    height:30%;
-  }
+    position: relative;
+    display: table; /* <-- This makes the trick */
+    overflow-y: auto;
+    overflow-x: auto;
+    width: auto;
+    min-width: 300px;
+}
 

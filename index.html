@@ -29,18 +29,25 @@
 
 
     <!-- the website -->
-    <h1>My Website</h1>
+    <section class="pageHeader">
+        <div class= "header-img-container">
+                <video id="video" autoplay="" loop="" muted="">
+                    <source type="video/mp4" src="barcelona.mp4">
+                  </video>
+        </div>
+    </section>
+    
     <!-- menu -->
-    <ul>
+    <nav class="menu">
         <!-- welcome our guest -->
-        <li id="loggedUser"> Hello <a>{{ getUserName() }}</a></li>
+        <li  id="loggedUser"> <p>Hello {{ getUserName() }}!</p></li>
         <li  ng-show="!isUserLoggedIn()"> <a href="#!home">Home</a></li>
         <li  ng-show= "isUserLoggedIn()"> <a href="#!loggedUserHome" >Home</a></li>
         <li> <a href="#!about">About</a></li>
         <li> <a href="#!poi">POI</a></li>
-        <li> <a href="#!httpRequest">POI</a></li>
+        <li id="logout"> <a ng-click="logOut()" ng-show="isUserLoggedIn()">Log out</a></li>
 <!--        delete lastone??-->
-    </ul>
+    </nav>
 
     <!-- This section changes as the hashbang changes -->
     <div ng-view></div>

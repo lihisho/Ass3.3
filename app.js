@@ -1,6 +1,6 @@
 let app = angular.module('myApp', ["ngRoute"]);
 
-app.controller('indexController', function ($scope, $window) {
+app.controller('indexController', function ($scope, $window, $location) {
     $scope.getUserName=function(){
         var user_name="Guest";
         if($window.sessionStorage.getItem("userName")!=null){
@@ -8,6 +8,7 @@ app.controller('indexController', function ($scope, $window) {
         }
         return user_name;
     }
+    
     /* check whether there is a logged user in the system */
      $scope.isUserLoggedIn= function(){
          if($window.sessionStorage.getItem("token")!=null )
@@ -15,7 +16,15 @@ app.controller('indexController', function ($scope, $window) {
          else
              return false;
      }
+
+     $scope.logOut=function(){
+        $window.sessionStorage.removeItem("token");
+        $window.sessionStorage.removeItem("userName");
+        $location.path('/home');
+    }
 });
+
+
 
 // config routes
 app.config(function($routeProvider)  {
@@ -65,13 +74,27 @@ app.config(function($routeProvider)  {
 app.service("poiDetails", function($http,$rootScope){
    this.poiPopoverCtrl=function(poiId){
         var onDetailsRetrvied = function (response) {
-            console.log(response.data.poiDetails[0].POInumOfViewers);
-            $rootScope.model_title=response.data.poiDetails[0].POInumOfViewers;
+            $rootScope.model_title=response.data.poiDetails[0].POIname;
+            $rootScope.model_content=response.data.poiDetails[0].POIdescription;
+            $rootScope.model_numViewers=response.data.poiDetails[0].POInumOfViewers;
+            $rootScope.model_averagePoiRank=response.data.poiDetails[0].POIaverageRank;
+            var numReviews=response.data.poiLastReviews.length;
+            if(numReviews==2){
+                $rootScope.model_first_review=(response.data.poiLastReviews[0].Critic).concat
+                (" (",(response.data.poiLastReviews[0].RankDate).substring(0,10)+")");
+                $rootScope.model_second_review=(response.data.poiLastReviews[1].Critic)
+                .concat(" (",(response.data.poiLastReviews[1].RankDate).substring(0,10)+")");;
+            }
+            else if(numReviews==1){
+                $rootScope.model_first_review=response.data.poiLastReviews[0].Critic;
+            }
         }
         var onDetailsFailed = function (response) {
-            angular.element('.modal_title')
+            //deal with errors!
             console.log(response);
         }
+        $rootScope.model_first_review=null;
+        $rootScope.model_second_review=null;
         $http.get("http://localhost:3000/poi/getPOIDet/"+poiId).then(onDetailsRetrvied, onDetailsFailed);
     }
 });

@@ -1,8 +1,10 @@
 // poi controller
 var jq = $.noConflict();
-
-angular.module("myApp").controller("poiController", function ($scope, $http, $window) {
-
+angular.module("myApp").controller("poiController", function ($scope, $http, $window, poiDetails) {
+    //handle poi details presentaion
+    $scope.showDet=function(event){
+        poiDetails.poiPopoverCtrl(event.target.id);
+    };
     //logged user check
     $scope.isUserLoggedIn = function () {
         if ($window.sessionStorage.getItem("token") != null)

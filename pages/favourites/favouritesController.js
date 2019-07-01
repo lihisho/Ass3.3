@@ -1,6 +1,10 @@
 // poi controller
-angular.module("myApp").controller("favouritesController", function ($scope, $http, $window) {
+angular.module("myApp").controller("favouritesController", function ($scope, $http, $window, poiDetails) {
     $scope.userFavourites=JSON.parse(sessionStorage.getItem('userFavouritePOIs'));
+    //handle poi details presentaion
+    $scope.showDet=function(event){
+        poiDetails.poiPopoverCtrl(event.target.id);
+    };
     //logged user check
     $scope.isUserLoggedIn= function(){
         if($window.sessionStorage.getItem("token")!=null )

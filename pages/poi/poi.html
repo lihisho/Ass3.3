@@ -1,3 +1,5 @@
+<div ng-include="'pages/poiDet_modal.html'"></div>
+
 <h2>POI</h2>
 
 <div name="user options regarding the poi">
@@ -26,8 +28,8 @@
     </tr>
     <tr
       ng-repeat="poi in allPOIs | orderBy:sort() | filter:search| filter:(!!selectedCategory || undefined)  && {CategoryName : selectedCategory}">
-      <td><a href>{{poi.POIname}}</a></td>
-      <td><img ng-src={{poi.POIimage}} width="250px" height="150px"></td>
+      <td><a href id={{poi.POIid}} ng-click="showDet($event)" data-toggle="modal"  data-target="#poiDetModal">{{poi.POIname}}</a></td>
+      <td><img id={{poi.POIid}} ng-click="showDet($event)" data-toggle="modal"  data-target="#poiDetModal" ng-src={{poi.POIimage}} width="250px" height="150px"></td>
       <td>{{ poi.CategoryName }}</td>
       <td ng-show="isUserLoggedIn()"><button type="button" id={{poi.POIid}} data-toggle="modal"
           data-target="#reviewModal" ng-click="passPOIid($event)" >review this</button></td>
@@ -72,4 +74,3 @@
 </div>
 
 </div>
-

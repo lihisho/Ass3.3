@@ -1,6 +1,9 @@
 // login controller
 angular.module("myApp")
-    .controller("loginController", function ($scope, $http, $window, $location) {
+    .controller("loginController", function ($scope, $http, $window, $location, poiDetails) {
+        $scope.showDet=function(event){
+            poiDetails.poiPopoverCtrl(event.target.id);
+        };
         //retrive
         $http({
             method: "GET",
@@ -22,9 +25,5 @@ angular.module("myApp")
             console.log(response);
         });
 
-        $scope.logOut=function(){
-            $window.sessionStorage.removeItem("token");
-            $window.sessionStorage.removeItem("userName");
-            $location.path('/home');
-        }
+
     });

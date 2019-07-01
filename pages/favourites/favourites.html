@@ -1,3 +1,5 @@
+<div ng-include="'pages/poiDet_modal.html'"></div>
+
 <h2>Your favorites</h2>
 
 <div name="user options regarding the poi">
@@ -21,9 +23,9 @@
         </tr>
         <tr ng-repeat="poi in userFavourites | orderBy:sort() | filter:(!!selectedCategory || undefined)
          && {CategoryName : selectedCategory}" >
-                <td ><a href id={{poi.POIid}}>{{poi.POIname}}</a></td>
+                <td ><a href id={{poi.POIid}} ng-click="showDet($event)" data-toggle="modal"  data-target="#poiDetModal">{{poi.POIname}}</a></td>
                 <td class="favorImageContainer">
-                    <img id={{poi.POIid}} ng-src={{poi.POIimage}} >
+                    <img id={{poi.POIid}} ng-click="showDet($event)" data-toggle="modal"  data-target="#poiDetModal" ng-src={{poi.POIimage}} >
                     <button class="removeFavButton" ng-click="removeFavPOI(poi.POIid)">
                         <i class="material-icons">delete_forever</i>
                     </button>

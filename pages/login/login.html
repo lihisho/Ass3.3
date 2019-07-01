@@ -1,20 +1,23 @@
+<div ng-include="'pages/poiDet_modal.html'"></div>
+
 <h2>Home</h2>
  <!-- pagen shown for logged users -->
  <div name="loggedUserPage" ng-show="isUserLoggedIn()">
         <div name="recommendedPoiForUser">
             <h2> Recommended </h2>
             <sapn ng-repeat="poi in recommendedPOIs">
-                    <a href id={{poi.POIid}}>{{poi.POIname}}</a>
-                    <img id={{poi.POIid}} ng-src={{poi.POIimage}} width="250px" height="150px">
+                    <a href id={{poi.POIid}}  ng-click="showDet($event)" data-toggle="modal"
+                    data-target="#poiDetModal">{{poi.POIname}}</a>
+                    <img id={{poi.POIid}} data-toggle="modal" data-target="#poiDetModal" ng-click="showDet($event)" ng-src={{poi.POIimage}} width="250px" height="150px">
             </span>
         </div>
         <div name="lastSavedPois">
             <h2> Last Saved</h2>
             <sapn ng-repeat="poi in lastSavedPOIs">
-                    <a href id={{poi.POIid}}>{{poi.POIname}}</a>
-                    <img id={{poi.POIid}} ng-src={{poi.POIimage}} width="250px" height="150px">
+                    <a href id={{poi.POIid}}  ng-click="showDet($event)"  data-toggle="modal"
+                     data-target="#poiDetModal">{{poi.POIname}}</a>
+                    <img id={{poi.POIid}} ng-click="showDet($event)"  data-toggle="modal"  data-target="#poiDetModal"
+                    ng-src={{poi.POIimage}} width="250px" height="150px">
             </span>
-        </div>
-        <br>
-        <button ng-click="logOut()">Log out</button>
     </div>
+</div>
