@@ -1,8 +1,12 @@
 .menu{
   background-color: #c9e0e8 ;
-  border-color:white;
-  border-style:solid;
+  border-bottom:1px black;
+  border-style:outset;
   align-items: center;
+}
+
+h2{
+
 }
 .menu li
 {
@@ -168,9 +172,36 @@
 /* home design */
 #randomePoints{
   background-color:#c9e0e8	;
-  border-color:grey;
+  border-color:black;
   -webkit-filter: brightness(105%); /* Safari */
   filter: brightness(105%);
 }
 
 
+.loginField{
+  float: left;
+  margin:10px;
+}
+
+.loginField input[type=text]{
+  border-radius: 5px;
+  padding:5px;
+  background-color:#e8effa;
+}
+
+.loginField input[type=text]:focus {
+  border: 0.5px solid black;
+}
+.loginField input[type=submit]{
+  border-radius: 5px;
+  padding:10x;
+  background-color:#e8effa;
+  height: 7%;
+}
+
+#poiDetModal .modal-header{
+  background-color: mistyrose;
+}
+#poiDetModal .modal-footer button{
+  background-color: lightgray;
+}

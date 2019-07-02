@@ -46,7 +46,7 @@ angular.module("myApp").controller("poiController", function ($scope, $http, $wi
     $http.get("http://localhost:3000/categories/getAllCategories").then(onSucessCategories, onErrorCategories);
 
     addIsFavorite = function (POIs) {
-        // $scope.userFavourite = JSON.parse($window.sessionStorage.getItem('userFavouritePOIs'));
+        $scope.userFavourite = JSON.parse($window.sessionStorage.getItem('userFavouritePOIs'));
         console.log($scope.userFavourite);
     
         for (var j = 0; j < POIs.length; j++) {
@@ -60,10 +60,9 @@ angular.module("myApp").controller("poiController", function ($scope, $http, $wi
             }
             POIs[j].Favorite= isFav;
         }
-        // console.log(POIs);
+        console.log(POIs);
         return POIs;           
     }
-
 
     $scope.chooseImage =function(isFavorite){
         if(isFavorite)
