@@ -63,7 +63,7 @@ angular.module("myApp").controller("poiController", function ($scope, $http, $wi
         console.log(POIs);
         return POIs;           
     }
-
+    
     $scope.chooseImage =function(isFavorite){
         if(isFavorite)
             return "glyphicon glyphicon-heart"
