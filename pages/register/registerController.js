@@ -7,7 +7,7 @@ angular.module("myApp").controller("registerController", function ($scope, $http
     }).then(function mySuccess(response) {
         $scope.questionList = response.data;
     }, function myError(response) {
-        $scope.test = "NOT-OK";
+        $scope.test = "No Questions";
     });
 
     $http({
@@ -16,7 +16,7 @@ angular.module("myApp").controller("registerController", function ($scope, $http
     }).then(function mySuccess(response) {
         $scope.categoryList = response.data;
     }, function myError(response) {
-        $scope.test = "NOT-OK";
+        $scope.test = "Categrories not returned";
     });
 
     // TODO: remove all error functions.
@@ -27,7 +27,7 @@ angular.module("myApp").controller("registerController", function ($scope, $http
     }).then(function mySuccess(response) {
         $scope.countryList = response.data;
     }, function myError(response) {
-        $scope.test = "NOT-OK";
+        $scope.test = "Countires not returned";
     });
 
     
@@ -45,7 +45,6 @@ angular.module("myApp").controller("registerController", function ($scope, $http
         var chosenCategories = [];
         chosenCategories = getCat();
         if (chosenCategories.length < 2){
-            console.log(chosenCategories.length)
             alert("please choose 2 interests");
         }
         else {

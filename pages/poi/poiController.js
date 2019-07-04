@@ -5,8 +5,8 @@ angular.module("myApp").controller("poiController", function ($rootScope,$scope,
     var favorites= $scope.userFavourite?JSON.parse($scope.userFavourite):[];
     $rootScope.numOfFavorites = favorites.length;
     //handle poi details presentaion
-    $scope.showDet = function (event) {
-        poiDetails.poiPopoverCtrl(event.target.id,event);
+    $scope.showDet=function(event){
+        poiDetails.poiPopoverCtrl(event.target.id);
     };
     //logged user check
     $scope.isUserLoggedIn = function () {
@@ -43,12 +43,11 @@ angular.module("myApp").controller("poiController", function ($rootScope,$scope,
 
     addIsFavorite = function (POIs) {
         $scope.userFavourite = JSON.parse($window.sessionStorage.getItem('userFavouritePOIs'));
-    
         for (var j = 0; j < POIs.length; j++) {
             var isFav=false;
             for (var i = 0; i < $scope.userFavourite.length; i++) {
                 var fav = $scope.userFavourite[i];
-                if (fav.POIid === POIs[j].POIid) {
+                if (fav.POIid == POIs[j].POIid) {
                     isFav=true;
                     break;
                 }
@@ -120,10 +119,10 @@ angular.module("myApp").controller("poiController", function ($rootScope,$scope,
                 alert("saved!");
                 jq(".modal").modal('hide');
             }, function myError(response) {
-                alert("save was unsuccesfull");
+                alert("save was unsuccesfull. Notice you can't review the same site twice");
             });
         }
-    }
+    };
     $scope.removeFavourite=function(){
         $scope.addOrRemoveFavorite($rootScope.model_poiId, $rootScope.model_title, 
             $rootScope.model_img, $rootScope.model_category, $rootScope.model_averagePoiRank);

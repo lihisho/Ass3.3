@@ -1,7 +1,6 @@
 // poi controller
 angular.module("myApp").controller("favouritesController", function ($scope, $http, $window, poiDetails, handleFavorites,$rootScope) {
     $scope.userFavourites=JSON.parse($window.sessionStorage.getItem('userFavouritePOIs'));
-    console.log($scope.userFavourites);
     //handle poi details presentaion
     $scope.showDet=function(event){
         poiDetails.poiPopoverCtrl(event.target.id);

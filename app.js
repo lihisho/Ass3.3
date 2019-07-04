@@ -52,10 +52,6 @@ app.config(function($routeProvider)  {
             templateUrl: 'pages/home/retrievePassword.html',
             controller : 'homeController as homeCntrl'
         })
-        .when('/httpRequest', {
-            templateUrl: 'pages/http/request.html',
-            controller : 'httpController as httpCtrl'
-        })
         .when('/loggedUserHome', {
             templateUrl: 'pages/login/login.html',
             controller : 'loginController as loginCtrl'
