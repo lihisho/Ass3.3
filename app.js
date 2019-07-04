@@ -83,7 +83,8 @@ app.service("poiDetails", function($http,$rootScope,$window){
                 .concat(" (",(response.data.poiLastReviews[1].RankDate).substring(0,10)+")");;
             }
             else if(numReviews==1){
-                $rootScope.model_first_review=response.data.poiLastReviews[0].Critic;
+                $rootScope.model_first_review=(response.data.poiLastReviews[0].Critic).concat
+                (" (",(response.data.poiLastReviews[0].RankDate).substring(0,10)+")");
             }
         }
         var onDetailsFailed = function (response) {
