@@ -1,12 +1,12 @@
 // poi controller
 var jq = $.noConflict();
-angular.module("myApp").controller("poiController", function ($scope, $http, $window, poiDetails,handleFavorites) {
+angular.module("myApp").controller("poiController", function ($rootScope,$scope, $http, $window, poiDetails,handleFavorites) {
     $scope.userFavourite =$window.sessionStorage.getItem('userFavouritePOIs');
     var favorites= $scope.userFavourite?JSON.parse($scope.userFavourite):[];
-    $scope.numOfFavorites = favorites.length;
+    $rootScope.numOfFavorites = favorites.length;
     //handle poi details presentaion
     $scope.showDet = function (event) {
-        poiDetails.poiPopoverCtrl(event.target.id);
+        poiDetails.poiPopoverCtrl(event.target.id,event);
     };
     //logged user check
     $scope.isUserLoggedIn = function () {
@@ -19,19 +19,15 @@ angular.module("myApp").controller("poiController", function ($scope, $http, $wi
         $scope.userFavourite =JSON.parse($window.sessionStorage.getItem('userFavouritePOIs'));
         for(var p=0; p<$scope.allPOIs.length; p++){
             var poi = $scope.allPOIs[p];
-            if(poi.POIid === poiID){
+            if(poi.POIid == poiID){
+                console.log("true");
                 if(poi.Favorite === true){
                     $scope.allPOIs[p].Favorite=false;
                     handleFavorites.removeFavPOIs(poiID, $scope.userFavourite);  
-                    $scope.numOfFavorites--;
-                    console.log(JSON.parse($window.sessionStorage.getItem('userFavouritePOIs')));                  
                 }
                 else{
                     $scope.allPOIs[p].Favorite=true;
-                    handleFavorites.addFavPOIs(poiID,poiName,poiImage,poiCategory,poiRank,$scope.userFavourite);
-                    $scope.numOfFavorites++;
-                    console.log(JSON.parse($window.sessionStorage.getItem('userFavouritePOIs')));
-
+                    handleFavorites.addFavPOIs(poiID,poiName,poiImage,poiCategory,poiRank,$scope.userFavourite);                    
                 }
             }
         }
@@ -47,7 +43,6 @@ angular.module("myApp").controller("poiController", function ($scope, $http, $wi
 
     addIsFavorite = function (POIs) {
         $scope.userFavourite = JSON.parse($window.sessionStorage.getItem('userFavouritePOIs'));
-        console.log($scope.userFavourite);
     
         for (var j = 0; j < POIs.length; j++) {
             var isFav=false;
@@ -60,7 +55,6 @@ angular.module("myApp").controller("poiController", function ($scope, $http, $wi
             }
             POIs[j].Favorite= isFav;
         }
-        console.log(POIs);
         return POIs;           
     }
     
@@ -130,6 +124,14 @@ angular.module("myApp").controller("poiController", function ($scope, $http, $wi
             });
         }
     }
+    $scope.removeFavourite=function(){
+        $scope.addOrRemoveFavorite($rootScope.model_poiId, $rootScope.model_title, 
+            $rootScope.model_img, $rootScope.model_category, $rootScope.model_averagePoiRank);
+    };
+    $scope.addFavourite=function(){
+        $scope.addOrRemoveFavorite($rootScope.model_poiId, $rootScope.model_title, 
+            $rootScope.model_img, $rootScope.model_category, $rootScope.model_averagePoiRank);
+    };
     jq(document).ready(function () {
         jq(".modal").on('hidden.bs.modal', function () {
             jq('textarea#userContentInput').val('');

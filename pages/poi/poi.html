@@ -1,9 +1,8 @@
 <div ng-include="'pages/poiDet_modal.html'"></div>
-
-<h2>POI</h2>
+ <h2>POI</h2>
 
 <div name="user options regarding the poi">
-  <ul>
+  <ul id="userPOIMenu">
     <li><label>Search: <input ng-model="search.POIname"></label>
     </li>
     <li> Filter:
@@ -14,10 +13,10 @@
     </li>
     <li><button name="sort" ng-click="handleSortClicked()">{{toggleSortButtonText}} </button>
     </li>
-    <!-- add favourite icon with number items! -->
-    <li ng-show="isUserLoggedIn()" ><a href=#!favourites ng-model="numOfFavorites" >Favorites ({{numOfFavorites}})</a></li>
+    <li id="favouritesLink" ng-show="isUserLoggedIn()" ><a href=#!favourites ng-model="numOfFavorites" >Favorites ({{numOfFavorites}})</a></li>
   </ul>
 </div>
+
 <div name="POIS dispaly">
   <table ng-show="(allPOIs| filter:search).length" id="searchObjResults">
     <tr>
@@ -30,7 +29,7 @@
       ng-repeat="poi in allPOIs | orderBy:sort() | filter:search| filter:(!!selectedCategory || undefined)  && {CategoryName : selectedCategory}">
       <td><a href id={{poi.POIid}} ng-click="showDet($event)" data-toggle="modal"  data-target="#poiDetModal">{{poi.POIname}}</a></td>
       <td class="poiImage">
-        <img id={{poi.POIid}} ng-click="showDet($event)" data-toggle="modal"  data-target="#poiDetModal" ng-src={{poi.POIimage}} width="250px" height="150px">
+          <img id={{poi.POIid}} ng-click="showDet($event)" data-toggle="modal"  data-target="#poiDetModal" ng-src={{poi.POIimage}} width="250px" height="150px">
         <button class="saveFavorite" ng-show="isUserLoggedIn()" ng-click="addOrRemoveFavorite(poi.POIid, poi.POIname, poi.POIimage, poi.CategoryName, poi.POIaverageRank)">
             <i class={{chooseImage(poi.Favorite)}}></i> 
         </button>
@@ -38,7 +37,7 @@
 
       </td>
       <td>{{ poi.CategoryName }}</td>
-      <td ng-show="isUserLoggedIn()"><button type="button" id={{poi.POIid}} data-toggle="modal"
+      <td class="buttonReview" ng-show="isUserLoggedIn()"><button type="button" id={{poi.POIid}} data-toggle="modal"
           data-target="#reviewModal" ng-click="passPOIid($event)" >review this</button></td>
     </tr>
   </table>

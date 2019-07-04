@@ -5,9 +5,6 @@
   align-items: center;
 }
 
-h2{
-
-}
 .menu li
 {
   display:inline;
@@ -170,20 +167,26 @@ h2{
 }
 
 /* home design */
-#randomePoints{
+#randomePoints, #lastSavedPois, #recommendedPoiForUser{
   background-color:#c9e0e8	;
   border-color:black;
   -webkit-filter: brightness(105%); /* Safari */
   filter: brightness(105%);
 }
 
+#userPOIMenu li, #favouritesMenu li{
+  display:block;
+  float:left;
+  /* height:150px;  */
+  padding: 10px;
+}
 
 .loginField{
   float: left;
   margin:10px;
 }
 
-.loginField input[type=text]{
+.loginField input[type=text], #userPOIMenu li input,#userPOIMenu li select, #favouritesMenu li select{
   border-radius: 5px;
   padding:5px;
   background-color:#e8effa;
@@ -192,7 +195,13 @@ h2{
 .loginField input[type=text]:focus {
   border: 0.5px solid black;
 }
-.loginField input[type=submit]{
+#userPOIMenu li button, #favouritesMenu li button{
+  border-radius: 5px;
+  padding:10x;
+  background-color:#e8effa;
+  height: 6%;
+}
+.loginField input[type=submit],td .buttonReview{
   border-radius: 5px;
   padding:10x;
   background-color:#e8effa;
@@ -204,4 +213,37 @@ h2{
 }
 #poiDetModal .modal-footer button{
   background-color: lightgray;
+}
+
+ table {
+   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+   border-collapse: collapse;
+   width: 100%;
+}
+
+td, th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center; 
+  vertical-align: middle;
+}
+ 
+
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+th {
+  position: sticky;
+  top: 0;
+  background-color: #333;
+  color: white;
+}
+ tr:hover {background-color: #ddd;}
+
+
+#about, #registerPage, #retrievePasswordPage{
+  background-color: #e8effa;
+}
+#imageSection img{
+  max-width: 600px;
 }

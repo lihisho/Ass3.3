@@ -3,7 +3,22 @@
   <component name="ChangeListManager">
     <list default="true" id="6e49a666-6f27-4b9b-9db6-99ea8098ff14" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/about/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/about/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/about/aboutController.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/favourites/favourites.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/favourites/favourites.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/favourites/favouritesController.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/favourites/favouritesController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/home/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/home/homeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/homeController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/home/retrievePassword.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/retrievePassword.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/login/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/login/loginController.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/login/loginController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/poi/poi.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/poi/poi.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/poi/poiController.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/poi/poiController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/poiDet_modal.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/poiDet_modal.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/register/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/register/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -15,7 +30,17 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pages/poi/poi.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="161">
+              <caret line="31" column="98" selection-start-line="31" selection-start-column="95" selection-end-line="31" selection-end-column="98" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -24,6 +49,11 @@
         <option value="JavaScript File" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>det</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -57,8 +87,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="170" />
-    <option name="y" value="91" />
+    <option name="x" value="169" />
+    <option name="y" value="90" />
     <option name="width" value="1026" />
     <option name="height" value="546" />
   </component>
@@ -89,7 +119,7 @@
               <item name="Ass3.3" type="b2602c69:ProjectViewProjectNode" />
               <item name="Ass3.3" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="register" type="462c0819:PsiDirectoryNode" />
+              <item name="poi" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -103,10 +133,10 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/WebstormProjects/task3.2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ass 3.3 prev/Ass3.3/pages/favourites/favouritesController.js" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="two.files.diff.last.used.file" value="$USER_HOME$/Downloads/Ass3.3/Ass3.3/pages/login/loginController.js" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/../ass 3.3 prev/Ass3.3/pages/favourites/favouritesController.js" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -143,16 +173,18 @@
       <workItem from="1560707124074" duration="6641000" />
       <workItem from="1560893371926" duration="816000" />
       <workItem from="1561932804697" duration="9374000" />
+      <workItem from="1562158980755" duration="986000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16831000" />
+    <option name="totallyTimeSpent" value="17817000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1376" height="744" extended-state="7" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26083708" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2607313" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -207,13 +239,6 @@
     <entry file="file://$PROJECT_DIR$/pages/home/retrievePassword.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/poi/poi.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/poi/poiController.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -223,16 +248,8 @@
     <entry file="file://$PROJECT_DIR$/pages/register/register.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/../website1-1/index.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../website1-1/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="19" lean-forward="true" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../website1-1/index.html" />
+    <entry file="file://$PROJECT_DIR$/../website1-1/style.css" />
     <entry file="file://$PROJECT_DIR$/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
@@ -281,6 +298,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="22" column="23" lean-forward="true" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/poi/poi.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="31" column="98" selection-start-line="31" selection-start-column="95" selection-end-line="31" selection-end-column="98" />
         </state>
       </provider>
     </entry>

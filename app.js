@@ -36,7 +36,6 @@ app.config(function($routeProvider)  {
         .when('/about', {
             // this is a template url
             templateUrl: 'pages/about/about.html',
-            controller : 'aboutController as abtCtrl'
         })
         // poi
         .when('/poi', {
@@ -69,13 +68,17 @@ app.config(function($routeProvider)  {
         .otherwise({ redirectTo: '/home' });
 });
 
-app.service("poiDetails", function($http,$rootScope){
+app.service("poiDetails", function($http,$rootScope,$window){
    this.poiPopoverCtrl=function(poiId){
         var onDetailsRetrvied = function (response) {
             $rootScope.model_title=response.data.poiDetails[0].POIname;
             $rootScope.model_content=response.data.poiDetails[0].POIdescription;
             $rootScope.model_numViewers=response.data.poiDetails[0].POInumOfViewers;
             $rootScope.model_averagePoiRank=response.data.poiDetails[0].POIaverageRank;
+            //for the favourites
+            $rootScope.model_poiId=poiId;
+            $rootScope.model_img=response.data.poiDetails[0].POIimage;
+            $rootScope.model_category=response.data.poiDetails[0].CategoryName;
             var numReviews=response.data.poiLastReviews.length;
             if(numReviews==2){
                 $rootScope.model_first_review=(response.data.poiLastReviews[0].Critic).concat
@@ -91,13 +94,25 @@ app.service("poiDetails", function($http,$rootScope){
             //deal with errors!
             console.log(response);
         }
+        var checkIfPOIInFavorites=function(poiId){
+            var userFavourites=JSON.parse($window.sessionStorage.getItem('userFavouritePOIs'));
+            for(var i = 0; i < userFavourites.length; i++) {
+                var fav_poi = userFavourites[i];
+                if(fav_poi.POIid== poiId){
+                    return true;
+                }
+            }
+            return false;
+        }
         $rootScope.model_first_review=null;
         $rootScope.model_second_review=null;
+        if($window.sessionStorage.getItem("token")!=null )
+            $rootScope.isPOIInFavourite=checkIfPOIInFavorites(poiId);
         $http.get("http://localhost:3000/poi/getPOIDet/"+poiId).then(onDetailsRetrvied, onDetailsFailed);
     }
 });
 
-app.service("handleFavorites", function($window){
+app.service("handleFavorites", function($window, $rootScope){
     this.removeFavPOIs=function(poiID,userFavorites)
     {
         for(var i = 0; i < userFavorites.length; i++) {
@@ -106,12 +121,14 @@ app.service("handleFavorites", function($window){
                 userFavorites.splice(i,1);
             }
         }
+        $rootScope.numOfFavorites--;
         $window.sessionStorage.setItem("userFavouritePOIs",JSON.stringify(userFavorites));
+        $rootScope.isPOIInFavourite=false;
+        alert("removed!");
     }
 
     this.addFavPOIs=function(poiID,poiName,poiImage,poiCategory,poiRank,userFavorites)
     {
-        console.log(userFavorites);
         var curDate= new Date();
         userFavorites.push({
             "POIid" :poiID,
@@ -121,6 +138,10 @@ app.service("handleFavorites", function($window){
             "POIimage": poiImage,
             "POIaverageRank": poiRank
          });
+         $rootScope.numOfFavorites++;
         $window.sessionStorage.setItem("userFavouritePOIs",JSON.stringify(userFavorites));
+        $rootScope.isPOIInFavourite=true;
+        alert("saved!");
     }
+    
 });

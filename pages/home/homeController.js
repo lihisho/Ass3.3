@@ -82,7 +82,12 @@ angular.module("myApp")
         $scope.cancelRequest = function () {
             $location.path('/home');
         }
-
+        $scope.isUserLoggedIn = function () {
+            if ($window.sessionStorage.getItem("token") != null)
+                return true;
+            else
+                return false;
+        } 
         $scope.retrievePassword = function () {
             $http({
                 method: "POST",
@@ -103,6 +108,7 @@ angular.module("myApp")
             }, function myError(response) {
                 console.log(response)
             });
+
 
         }
     });
